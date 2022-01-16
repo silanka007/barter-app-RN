@@ -16,20 +16,13 @@ app.use(express.json());
 dotenv.config({ path: "./config.env" });
 
 // db connection
-(async () => {
-  try {
-    const URI = config.get("MONGO_URI")
-    await mongoose.connect(URI);
-    console.log("database connection successfully...");
-  } catch (error) {
-    console.log(error.message);
-  }
-})();
-
+mongoose
+  .connect(config.get("MONGO_URI"))
+  .then((conn) => console.log("connected to database successfully..."))
+  .catch((err) => console.log(err.message));
 
 // routes
-app.use("/api/users", require("./routes/api/users"))
-
+app.use("/api/users", require("./routes/api/users"));
 
 const server = http.createServer(app);
 const io = socketio(server).sockets;

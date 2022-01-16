@@ -6,7 +6,7 @@ const UserSchema = mongoose.Schema({
   phone: { type: String, required: true },
   password: { type: String, required: true },
   account_balance: { type: Number, required: true },
-  account_name: { type: Number, required: true },
+  account_number: { type: Number, required: true },
   userRef: { type: String, default: "" },
   createdAt: { type: Date, default: Date.now },
 });
