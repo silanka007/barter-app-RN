@@ -9,8 +9,9 @@ const mongoose = require("mongoose");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// body parser
+// middlewares
 app.use(express.json());
+app.use(morgan('combined'))
 
 // load environment variable
 dotenv.config({ path: "./config.env" });
