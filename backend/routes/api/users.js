@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../../models/User");
 const { getRandom } = require("../../helpers/utils");
 
-router.get("/register", async (req, res) => {
+router.post("/register", async (req, res) => {
   try {
     const { name, password, email, phone } = req.body;
     if (!name || !email || !phone || !password) {
@@ -30,7 +30,7 @@ router.get("/register", async (req, res) => {
       account_number: getRandom(11),
     };
     const user = await User.create(newUser);
-    const token = await jwt.sign({ id: user.id }, config.get("SECRET_KEY"), {
+    const token = jwt.sign({ id: user.id }, config.get("SECRET_KEY"), {
       expiresIn: 3600,
     });
     return res.send({

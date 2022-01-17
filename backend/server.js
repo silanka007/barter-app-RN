@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 5000;
 
 // middlewares
 app.use(express.json());
-app.use(morgan('combined'))
+app.use(morgan("combined"));
 
 // load environment variable
 dotenv.config({ path: "./config.env" });
@@ -24,6 +24,7 @@ mongoose
 
 // routes
 app.use("/api/users", require("./routes/api/users"));
+app.use("/api/auth", require("./routes/api/auth"));
 
 const server = http.createServer(app);
 const io = socketio(server).sockets;
